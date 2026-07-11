@@ -1,51 +1,66 @@
 #include "DiceHand.h"
+#include <string>
 
-DiceHand::DiceHand()
-{
-    size = 5;
-    dice = new Die[size];
-}
+using namespace std;
 
 DiceHand::DiceHand(int handSize)
+    : DiceHand(new Die[handSize], handSize)
 {
-    size = handSize;
-    dice = new Die[size];
 }
+
+DiceHand::DiceHand(Die* diceArray, int handSize)
+{
+    dice = diceArray;
+    size = handSize;
+}
+
 
 DiceHand::~DiceHand()
 {
     delete[] dice;
 }
 
+
 int DiceHand::getSize() const
 {
     return size;
 }
 
-void DiceHand::rollAllDice()
+
+Die* DiceHand::getDice() const
 {
-    for (int i = 0; i < size; i++)
-        dice[i].roll();
+    return dice;
 }
+
 
 void DiceHand::rollDie(int dieNum)
 {
     if (dieNum >= 0 && dieNum < size)
+    {
         dice[dieNum].roll();
+    }
 }
+void DiceHand::rollAllDice()
+{
+    for (int i = 0; i < size; i++)
+    {
+        dice[i].roll();
+    }
+}
+
 
 string DiceHand::displayDieHand() const
 {
-    string output = "";
+    string result = "";
 
     for (int i = 0; i < size; i++)
     {
-        output += "Die ";
-        output += to_string(i + 1);
-        output += ": ";
-        output += to_string(dice[i].getFaceValue());
-        output += "\n";
+        result += "Die ";
+        result += to_string(i + 1);
+        result += ": ";
+        result += to_string(dice[i].getFaceValue());
+        result += "\n";
     }
 
-    return output;
+    return result;
 }
