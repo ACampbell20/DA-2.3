@@ -7,19 +7,16 @@ using namespace std;
 class Die
 {
 private:
-    int numberOfSides;
+    const int numberOfSides;
     int faceValue;
 
 public:
-    Die();
-    Die(int sides);
-
-    void setNumberOfSides(int sides);
-    void setFaceValue(int value);
+    Die(int sides = 6);
 
     int getNumberOfSides() const;
     int getFaceValue() const;
 
+    void setFaceValue(int value);
     void roll();
 
     string describeDie() const;
