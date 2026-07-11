@@ -12,15 +12,16 @@ private:
     int size;
 
 public:
-    DiceHand();
-    DiceHand(int handSize);
+    DiceHand(int handSize = 5);
+    DiceHand(Die* diceArray, int handSize);
 
     ~DiceHand();
 
     int getSize() const;
+    Die* getDice() const;
 
-    void rollAllDice();
     void rollDie(int dieNum);
+    void rollAllDice();
 
     string displayDieHand() const;
 };
